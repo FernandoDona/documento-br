@@ -6,7 +6,7 @@ namespace Documento.BR.Rules.CPF
     {
         public static bool Validate(ReadOnlySpan<char> input)
         {
-            if (input.Length > CPFConfiguration.MaximunSize)
+            if (input.Length > CPFConfiguration.MaximumSize)
                 return false;
             if (input.Length > CPFConfiguration.DigitsSize && !NumericData.CheckFormatting(input, CPFConfiguration.PunctuationIndexes))
                 return false;

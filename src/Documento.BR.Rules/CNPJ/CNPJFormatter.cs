@@ -28,7 +28,7 @@ namespace Documento.BR.Rules.CNPJ
             if (CNPJValidator.Validate(input) == false)
                 return false;
 
-            Span<char> outputAsSpan = stackalloc char[CNPJConfiguration.MaximunSize];
+            Span<char> outputAsSpan = stackalloc char[CNPJConfiguration.MaximumSize];
             NumericData.FormatData(CNPJConfiguration.PunctuationIndexes, input, ref outputAsSpan);
 
             output = new string(outputAsSpan);

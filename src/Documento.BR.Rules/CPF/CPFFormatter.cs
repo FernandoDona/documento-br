@@ -28,7 +28,7 @@ namespace Documento.BR.Rules.CPF
             if (CPFValidator.Validate(input) == false)
                 return false;
 
-            Span<char> outputAsSpan = stackalloc char[CPFConfiguration.MaximunSize];
+            Span<char> outputAsSpan = stackalloc char[CPFConfiguration.MaximumSize];
             NumericData.FormatData(CPFConfiguration.PunctuationIndexes, input, ref outputAsSpan);
 
             output = new string(outputAsSpan);

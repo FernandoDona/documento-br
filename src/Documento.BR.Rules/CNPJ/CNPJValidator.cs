@@ -6,7 +6,7 @@ namespace Documento.BR.Rules.CNPJ
     {
         public static bool Validate(ReadOnlySpan<char> input)
         {
-            if (input.Length > CNPJConfiguration.MaximunSize)
+            if (input.Length > CNPJConfiguration.MaximumSize)
                 return false;
             if (input.Length > CNPJConfiguration.DigitsSize && !NumericData.CheckFormatting(input, CNPJConfiguration.PunctuationIndexes))
                 return false;

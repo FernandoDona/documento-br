@@ -12,6 +12,6 @@ namespace Documento.BR.Rules.CNPJ
             { 15, '-' }
         };
         internal const int DigitsSize = 14;
-        internal const int MaximunSize = 18;
+        internal const int MaximumSize = 18;
     }
 }

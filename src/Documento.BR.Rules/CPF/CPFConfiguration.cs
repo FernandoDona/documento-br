@@ -11,6 +11,6 @@ namespace Documento.BR.Rules.CPF
             { 11, '-' }
         };
         internal const int DigitsSize = 11;
-        internal const int MaximunSize = 14;
+        internal const int MaximumSize = 14;
     }
 }
