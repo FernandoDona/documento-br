@@ -1,0 +1,8 @@
+Validar conversão implicita de string para IDocument
+Validar se a propriedade IsEmpty está com o valor correto
+
+
+Validar regra do documento
+
+
+COMPARAR PERFORMANCE USANDO SPAN E STRING NO CREATE

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Documento.BR.Rules.CPF
+namespace Documento.BR.Rules.Configuration
 {
-    internal class CPFConfiguration
+    internal static class CPFConfiguration
     {
         internal static readonly IDictionary<int, char> PunctuationIndexes = new Dictionary<int, char>
         {

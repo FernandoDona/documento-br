@@ -1,4 +1,4 @@
-using Documento.BR.Rules.CNPJ;
+using Documento.BR.Rules.Validators;
 
 namespace Documento.BR.Rules.Tests;
 

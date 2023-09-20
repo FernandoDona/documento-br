@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Documento.BR.Rules.Common;
+using Documento.BR.Rules.Configuration;
+using Documento.BR.Rules.Validators;
+using System;
 
-namespace Documento.BR.Rules.CNPJ
+namespace Documento.BR.Rules.Formatters
 {
-    public static class CNPJFormatter
+    public static class CPFFormatter
     {
         /// <summary>
         /// Adiciona a formatação padrão do documento.
@@ -25,11 +28,11 @@ namespace Documento.BR.Rules.CNPJ
         {
             output = null;
 
-            if (CNPJValidator.Validate(input) == false)
+            if (CPFValidator.Validate(input) == false)
                 return false;
 
-            Span<char> outputAsSpan = stackalloc char[CNPJConfiguration.MaximumSize];
-            NumericData.FormatData(CNPJConfiguration.PunctuationIndexes, input, ref outputAsSpan);
+            Span<char> outputAsSpan = stackalloc char[CPFConfiguration.MaximumSize];
+            NumericData.FormatData(CPFConfiguration.PunctuationIndexes, input, ref outputAsSpan);
 
             output = new string(outputAsSpan);
             return true;
@@ -40,7 +43,7 @@ namespace Documento.BR.Rules.CNPJ
         /// </summary>
         public static string Unformat(ReadOnlySpan<char> input)
         {
-            Span<char> numericOnlyInput = stackalloc char[CNPJConfiguration.DigitsSize];
+            Span<char> numericOnlyInput = stackalloc char[CPFConfiguration.DigitsSize];
             NumericData.GetOnlyDigits(input, ref numericOnlyInput);
 
             return new string(numericOnlyInput);

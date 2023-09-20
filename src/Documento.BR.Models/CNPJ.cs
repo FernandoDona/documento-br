@@ -1,5 +1,5 @@
-﻿using Documento.BR.Rules;
-using Documento.BR.Rules.CNPJ;
+﻿using Documento.BR.Rules.Formatters;
+using Documento.BR.Rules.Validators;
 using System;
 
 namespace Documento.BR.Models
@@ -27,7 +27,7 @@ namespace Documento.BR.Models
             CNPJ cpf = TryCreate(value);
             if (cpf.IsEmpty)
                 throw new ArgumentException("The value is in a invalid format.");
-            
+
             return cpf;
         }
 

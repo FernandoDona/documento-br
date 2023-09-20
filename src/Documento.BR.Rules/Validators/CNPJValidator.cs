@@ -1,26 +1,28 @@
 ﻿using System;
+using Documento.BR.Rules.Common;
+using Documento.BR.Rules.Configuration;
 
-namespace Documento.BR.Rules.CPF
+namespace Documento.BR.Rules.Validators
 {
-    public class CPFValidator
+    public class CNPJValidator
     {
         public static bool Validate(ReadOnlySpan<char> input)
         {
-            if (input.Length > CPFConfiguration.MaximumSize)
+            if (input.Length > CNPJConfiguration.MaximumSize)
                 return false;
-            if (input.Length > CPFConfiguration.DigitsSize && !NumericData.CheckFormatting(input, CPFConfiguration.PunctuationIndexes))
-                return false;
-
-            if (!NumericData.CheckQuantityOfNumericChars(input, CPFConfiguration.DigitsSize))
+            if (input.Length > CNPJConfiguration.DigitsSize && !NumericData.CheckFormatting(input, CNPJConfiguration.PunctuationIndexes))
                 return false;
 
-            Span<char> numericOnlyInput = stackalloc char[CPFConfiguration.DigitsSize];
+            if (!NumericData.CheckQuantityOfNumericChars(input, CNPJConfiguration.DigitsSize))
+                return false;
+
+            Span<char> numericOnlyInput = stackalloc char[CNPJConfiguration.DigitsSize];
             NumericData.GetOnlyDigits(input, ref numericOnlyInput);
 
-            return ValidateCPFNumericRule(numericOnlyInput);
+            return ValidateCNPJNumericRule(numericOnlyInput);
         }
 
-        private static bool ValidateCPFNumericRule(ReadOnlySpan<char> numericOnlyInput)
+        private static bool ValidateCNPJNumericRule(ReadOnlySpan<char> numericOnlyInput)
         {
             return NumericData.CheckIfAllNumbersAreNotTheSame(numericOnlyInput)
                 && CheckVerificationDigits(numericOnlyInput);
@@ -32,18 +34,21 @@ namespace Documento.BR.Rules.CPF
                 return true;
 
             double sum = 0;
-            int multiplier = digitsToCheck == 2 ? 10 : 11;
+            int multiplier = digitsToCheck == 2 ? 5 : 6;
 
             for (int i = 0; i < input.Length - digitsToCheck; i++)
             {
                 sum += char.GetNumericValue(input[i]) * multiplier;
                 multiplier--;
+
+                if (multiplier == 1)
+                    multiplier = 9;
             }
 
             var rest = sum % 11;
             var verificationDigit = 11 - rest;
             verificationDigit = verificationDigit >= 10 ? 0 : verificationDigit;
-            if (verificationDigit != (int)char.GetNumericValue(input[CPFConfiguration.DigitsSize - digitsToCheck]))
+            if (verificationDigit != (int)char.GetNumericValue(input[CNPJConfiguration.DigitsSize - digitsToCheck]))
                 return false;
 
             return CheckVerificationDigits(input, digitsToCheck - 1);

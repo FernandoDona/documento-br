@@ -1,4 +1,5 @@
-﻿using Documento.BR.Rules.CPF;
+﻿using Documento.BR.Rules.Formatters;
+using Documento.BR.Rules.Validators;
 using System;
 
 namespace Documento.BR.Models

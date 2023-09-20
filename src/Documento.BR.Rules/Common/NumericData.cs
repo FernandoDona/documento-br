@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Documento.BR.Rules
+namespace Documento.BR.Rules.Common
 {
     internal static class NumericData
     {

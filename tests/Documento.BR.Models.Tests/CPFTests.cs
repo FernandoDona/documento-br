@@ -1,4 +1,4 @@
-using Documento.BR.Rules.CPF;
+using Documento.BR.Rules.Formatters;
 
 namespace Documento.BR.Models.Tests;
 
