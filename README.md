@@ -2,15 +2,15 @@
 
 </div>
 
-####São 3 bibliotecas contidas neste repositório:
+#### São 3 bibliotecas contidas neste repositório:
 ##### [Documento.BR.Extensions.FluentValidation](#documentobrextensionsfluentvalidation)
 Uma biblioteca que extende o FluentValidation para adicionar validação de documentos brasileiros.
-#####Documento.BR.Rules
+##### Documento.BR.Rules
 É o core deste repositório. Contem as classes de validação e formatação dos documentos.
-#####Documento.BR.Models
+##### Documento.BR.Models
 Uma tentativa de criar value types dos documentos.
 
-##Documento.BR.Extensions.FluentValidation
+## Documento.BR.Extensions.FluentValidation
 
 <a href="https://www.nuget.org/packages/Documento.BR.Extensions.FluentValidation"><img alt="Nuget" src="https://img.shields.io/nuget/v/Documento.BR.Extensions.FluentValidation"></a>
 
