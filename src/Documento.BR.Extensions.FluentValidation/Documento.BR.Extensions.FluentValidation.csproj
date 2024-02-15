@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Documento.BR.Extensions.FluentValidation</Title>
+    <Authors>Fernando Doná</Authors>
+    <RepositoryUrl>https://github.com/FernandoDona/documento-br</RepositoryUrl>
+    <PackageTags>FluentValidation;Extension;CNPJ;CPF;Brasil;Document;Formatter;Validator</PackageTags>
+    <Description>Possue validações de documentos brasileiros como CPF e CNPJ como extensão para o FluentValidation</Description>
   </PropertyGroup>
 
   <ItemGroup>
