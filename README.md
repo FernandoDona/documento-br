@@ -14,7 +14,7 @@ Uma tentativa de criar value types dos documentos.
 
 <a href="https://www.nuget.org/packages/Documento.BR.Extensions.FluentValidation"><img alt="Nuget" src="https://img.shields.io/nuget/v/Documento.BR.Extensions.FluentValidation"></a>
 
-`dotnet add package Documento.BR.Extensions.FluentValidation --version 1.0.0`
+`dotnet add package Documento.BR.Extensions.FluentValidation --version 1.0.1`
 
 
 
