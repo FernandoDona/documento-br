@@ -7,14 +7,14 @@ namespace Documento.BR.Extensions.FluentValidation
 {
     public static class FluentValidationExtensions
     {
-        public static IRuleBuilderOptions<T, string?> ValidateCPF<T>(this IRuleBuilderInitial<T, string?> ruleBuilder)
+        public static IRuleBuilderOptions<T, string?> ValidateCPF<T>(this IRuleBuilder<T, string?> ruleBuilder)
         {
             return ruleBuilder.Must(input => CPFValidator.Validate(input))
                 .WithMessage(IsBrazillianCulture() ? "{PropertyName} {PropertyValue} não é válido." : "{PropertyName} {PropertyValue} is not valid.")
                 .WithErrorCode("InvalidCPF");
         }
 
-        public static IRuleBuilderOptions<T, string?> ValidateCNPJ<T>(this IRuleBuilderInitial<T, string?> ruleBuilder)
+        public static IRuleBuilderOptions<T, string?> ValidateCNPJ<T>(this IRuleBuilder<T, string?> ruleBuilder)
         {
             return ruleBuilder.Must(input => CNPJValidator.Validate(input))
                 .WithMessage(IsBrazillianCulture() ? "{PropertyName} {PropertyValue} não é válido." : "{PropertyName} {PropertyValue} is not valid.")
