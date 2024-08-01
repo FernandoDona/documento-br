@@ -1,0 +1,40 @@
+name: Deploy to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*'
+env:
+  PROJECT_PATH: src/Documento.BR.Extensions.FluentValidation/Documento.BR.Extensions.FluentValidation.csproj
+  TEST_PROJECT_PATH: tests/Documento.BR.Extensions.Tests/Documento.BR.Extensions.Tests.csproj
+  PACKAGE_OUTPUT_DIR: ${{ github.workspace}}/output
+
+jobs:
+  publish-package:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ vars.DOTNET_VERSION }}
+    
+    - name: Install dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+    
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+    
+    - name: Test
+      run: dotnet test ${{ env.TEST_PROJECT_PATH }} --no-restore --verbosity normal
+    
+    - name: 'Get Version'
+      id: version
+      uses: battila7/get-version-action@v2
+    
+    - name: Pack
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-build --no-restore --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} -o ${{ env.PACKAGE_OUTPUT_DIR }}
+    
+    - name: Push
+      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg --source ${{ vars.NUGET_SOURCE_URL }} --api-key ${{ secrets.NUGET_API_KEY }}
